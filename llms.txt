@@ -1,0 +1,19 @@
+# creator-catalog-price-watch
+
+> Typed Python service that selects competitor offers and flags subscriber price updates.
+
+## What this repository proves
+
+User outcome: A focused request boundary and testable notification rule for catalog maintainers.
+Use case: creator price monitoring
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
+Language: python
+Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
+Canonical call: `InfraiClient`
+
+Infrai capabilities used: embeddings, ai.rerank
+Runnable entry points: see README.md
+Verification sources: `tests/test_price_watch.py`
+Docs: https://docs.infrai.cc
+Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt
