@@ -83,7 +83,7 @@ class InfraiClient:
         return data["data"][0]["embedding"]
 
     def rerank(self, query: str, candidates: Sequence[str]) -> int:
-        data = self._post("/v1/ai/rerank", {"query": query, "candidates": list(candidates), "top_k": 1, "model": "auto", "vendor": "in-house"})
+        data = self._post("/v1/ai/rerank", {"query": query, "candidates": list(candidates), "top_k": 1, "model": "auto"})
         result = data.get("results", data)
         return int(result[0].get("index", 0))
 
