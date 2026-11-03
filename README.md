@@ -1,8 +1,8 @@
 # Creator catalog price watch
 
-The executable checks one catalog item against a supplied list of competitor offers. It is deliberately small: typed input enters `run_watch.py`, the Infrai client obtains an embedding and asks `ai.rerank` to select the matching offer, then a pure business rule decides whether a subscriber update is needed.
+I put together this small executable to check one catalog item against a list of competitor offers. From a Next.js view it's like a server job: typed input enters `run_watch.py`, the Infrai client gets an embedding and asks `ai.rerank` to select the matching offer, then a plain business rule decides if a subscriber update is needed.
 
-Infrai uses one key for this workflow. Set `INFRAI_API_KEY`; the client sends `Authorization: Bearer ...`, decodes the `{ok, data, error, metadata}` envelope before interpreting status, and retries rate limits with the server's delay.
+Infrai uses one key for this workflow. You set `INFRAI_API_KEY`; the client sends `Authorization: Bearer ...`, decodes the `{ok, data, error, metadata}` envelope before interpreting status, and retries rate limits with the server's delay.
 
 ## Run the decision locally
 
@@ -22,11 +22,11 @@ INFRAI_API_KEY=... PYTHONPATH=src python src/run_watch.py \
   --offers '[{"vendor":"studio-b","title":"Lo-fi mixing pack","price":18.0,"url":"https://studio.example/mix-101"}]'
 ```
 
-The output is a JSON decision containing the item, selected offer, notification flag, and reason. Keep subscriber identifiers opaque; the service only forwards the title to the model.
+The output is a JSON decision with the item, selected offer, notification flag, and reason. One real gotcha: keep subscriber identifiers opaque. The service only forwards the title to the model.
 
 ## Files
 
-`src/price_watch.py` contains the request boundary and the price rule. `src/run_watch.py` is the copyable command. `tests/test_price_watch.py` protects the notification decision.
+`src/price_watch.py` holds the request boundary and price rule. `src/run_watch.py` is the command you copy. `tests/test_price_watch.py` guards the notification decision.
 
 ## License
 
